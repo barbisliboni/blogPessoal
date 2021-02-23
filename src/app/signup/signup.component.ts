@@ -44,13 +44,13 @@ export class SignupComponent implements OnInit {
     }else{
       this.authService.cadastrar(this.user).subscribe((resp: User) =>{ //TRANSFORMANDO UM OBJETO TS EM FORMATO JSON
        this.user = resp
-
+      })
         //MANDANDO O USUÁRIO PARA UMA ROTA NO TYPESCRIPT
         //PRIMEIRAMENTE, DEVO INJETAR UMA DEPENDENCIA NO CONSTRUCTOR CHAMADA ROUTER
         this.router.navigate(['/login'])
 
         alert('Usuário cadastrado com sucesso!')
-      }) 
+       
     }
   }
 }
