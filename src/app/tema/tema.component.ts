@@ -36,8 +36,6 @@ export class TemaComponent implements OnInit {
     })
   }
 
-
-
   cadastrar(){ //método chamado no html ao clicar no botão de cadastrar/post
     this.temaService.postTema(this.tema).subscribe((resp: Tema)=>{
       this.tema = resp

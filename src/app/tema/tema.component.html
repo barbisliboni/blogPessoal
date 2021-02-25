@@ -50,8 +50,9 @@
                         <th>{{tema.id}}</th> <!--apresentando os temas cadastrados-->
                         <td>{{tema.descricao}}</td>
                         <td class="d-flex justify-content-end">
-                            <button class="btn btn-info mr-3">Edit</button>
-                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-info mr-3" [routerLink]="['/tema-edit', tema.id]">Edit</button> <!--property binding-->
+                                                    <!--tema.id se trata do tema inserido no ngFor da tr-->
+                            <button class="btn btn-danger" [routerLink]="['/tema-delete', tema.id]">Delete</button>
                         </td>
                     </tr>
                 </tbody>
