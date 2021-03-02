@@ -27,22 +27,25 @@
     <nav>
         <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
 
-            <a class="nav-item nav-link active text-secondary font-weight-bold" id="nav-allPosts-tab" data-toggle="tab"
-                href="#allPosts" role="tab" aria-controls="nav-allPosts" aria-selected="true">All posts
+            <a class="nav-item nav-link active text-secondary font-weight-bold" id="nav-todasPostagens-tab"
+                data-toggle="tab" href="#todasPostagens" role="tab" aria-controls="nav-todasPostagens"
+                aria-selected="true">All posts
             </a>
 
-            <a (click)='findByIdUser()' class="nav-item nav-link text-secondary font-weight-bold" id="nav-myPosts-tab"
-                data-toggle="tab" href="#myPosts" role="tab" aria-controls="nav-myPosts" aria-selected="false">My
+            <a (click)='findByIdUser()' class="nav-item nav-link text-secondary font-weight-bold"
+                id="nav-minhasPostagens-tab" data-toggle="tab" href="#minhasPostagens" role="tab"
+                aria-controls="nav-minhasPostagens" aria-selected="false">My
                 posts</a>
 
-            <a class="nav-item nav-link text-secondary font-weight-bold" id="nav-postTheme-tab" data-toggle="tab"
-                href="#postTheme" role="tab" aria-controls="nav-postTheme" aria-selected="false">Posts
+            <a class="nav-item nav-link text-secondary font-weight-bold" id="nav-postagemTema-tab" data-toggle="tab"
+                href="#postagemTema" role="tab" aria-controls="nav-postagemTema" aria-selected="false">Posts
                 by theme</a>
         </div>
     </nav>
 
     <div class="tab-content mt-5" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="allPosts" role="tabpanel" aria-labelledby="nav-allPosts-tab">
+        <div class="tab-pane fade show active" id="todasPostagens" role="tabpanel"
+            aria-labelledby="nav-todasPostagens-tab">
             <div class="card-columns">
                 <div class="card text-center" *ngFor='let item of listaPostagens'>
                     <div class="card-body">
@@ -51,18 +54,18 @@
                         <p class="card-text mt-3">{{item.texto}}</p>
                         <p class="card-text">
                             <!--formatando a data e hora-->
-                            <small class="text-muted">{{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date:
+                            <small class="text-muted">{{item.date | date: 'dd/MM/yyyy'}} às {{item.date | date:
                                 'HH:mm'}}</small>
                         </p>
                         <p class="card-text">
                             <small class="text-muted">by: {{item.usuario.nome}}</small>
-                        </p>
+                        </p> 
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="tab-pane fade" id="myPosts" role="tabpanel" aria-labelledby="nav-myPosts-tab">
+        <div class="tab-pane fade" id="minhasPostagens" role="tabpanel" aria-labelledby="nav-minhasPostagens-tab">
             <div class="card-columns">
                 <div class="card text-center" *ngFor='let item of user.postagem'>
                     <div class="card-body">
@@ -71,16 +74,17 @@
                         <p class="card-text mt-3">{{item.texto}}</p>
                         <p class="card-text">
                             <!--formatando a data e hora-->
-                            <small class="text-muted">{{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date:
+                            <small class="text-muted">{{item.date | date: 'dd/MM/yyyy'}} às {{item.date | date:
                                 'HH:mm'}}</small>
                         </p>
-
+                        <a [routerLink]="['/postagem-edit', item.id]" class="text-info mr-3">Edit</a>
+                        <a [routerLink]="['/postagem-delete', item.id]" class="text-danger">Delete</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="tab-pane fade" id="postTheme" role="tabpanel" aria-labelledby="nav-postTheme-tab">
+        <div class="tab-pane fade" id="postagemTema" role="tabpanel" aria-labelledby="nav-postagemTema-tab">
             <div class="card-columns *ngFor='let tema of listaTemas'">
                 <div class="card text-center" *ngFor='let item of tema.postagem'>
                     <div class="card-body">
@@ -88,7 +92,7 @@
                         <p class="card-text mt-3">{{item.texto}}</p>
                         <p class="card-text">
                             <!--formatando a data e hora-->
-                            <small class="text-muted">{{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date:
+                            <small class="text-muted">{{item.date | date: 'dd/MM/yyyy'}} às {{item.date | date:
                                 'HH:mm'}}</small>
                         </p>
                         <p class="card-text">
