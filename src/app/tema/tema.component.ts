@@ -25,6 +25,11 @@ export class TemaComponent implements OnInit {
       this.router.navigate(['/login'])
     }
 
+    if(environment.tipoUsuario != 'adm'){
+      alert('You need to be an adm to access this route')
+      this.router.navigate(['/inicio'])
+    }
+
     //LISTANDO TODOS OS TEMAS AUTOMATICAMENTE ASSIM QUE A PAGINA CARREGAR
     this.findAllTemas()
   }

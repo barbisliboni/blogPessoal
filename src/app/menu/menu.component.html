@@ -14,7 +14,7 @@
                     <p class="m-0 font-weight-bold text-white pl-3 user-font">Olá, {{nome}}</p>
                 </li>
                 &nbsp;
-                <li class="nav-item">
+                <li *ngIf='auth.adm()'class="nav-item">
                     <a [routerLink]="['/user-edit', id]">
                         <p class="text-white user-font m-0">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

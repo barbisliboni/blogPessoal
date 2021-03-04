@@ -35,11 +35,12 @@ export class LoginComponent implements OnInit {
       environment.nome = this.userLogin.nome
       environment.foto = this.userLogin.foto
       environment.id = this.userLogin.id
+      environment.tipoUsuario = this.userLogin.tipoUsuario
 
-      console.log(environment.token) //VALIDANDO INFORMAÇÕES
-      console.log(environment.nome)
-      console.log(environment.foto)
-      console.log(environment.id)
+      // console.log(environment.token) //VALIDANDO INFORMAÇÕES
+      // console.log(environment.nome)
+      // console.log(environment.foto)
+      // console.log(environment.id)
 
       this.router.navigate(['/inicio'])
     }, erro =>{
