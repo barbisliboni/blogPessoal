@@ -18,11 +18,16 @@ export class InicioComponent implements OnInit {
 
 	postagem: Postagem = new Postagem()
 	listaPostagens: Postagem[]
+
 	tema: Tema = new Tema()
 	listaTemas: Tema[]
 	idTema: number
+
 	user: User = new User()
 	idUser = environment.id
+
+	key = 'data'
+	reverse = true
 
 	constructor(
 		private router: Router,
