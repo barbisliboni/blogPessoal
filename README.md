@@ -2,7 +2,7 @@
 
 Esse repositório se refere ao exercício do curso de Desenvolvedor FullStack Java Jr. da Generation Brasil!
 
-### É possível: 
+### É possível: 👨‍💻
 
 #### Criar sua própria conta (como usuário normal ou administrador)
 #### Efetuar o login inserindo as informações inseridas no cadastro
