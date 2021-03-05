@@ -5,3 +5,7 @@
 .fs-18{
     font-size: 18pt;;
 }
+
+.bg-image{
+  background-image: url("../../assets/cachorrin.gif");
+}

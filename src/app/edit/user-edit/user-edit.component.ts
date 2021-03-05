@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/User';
+import { AlertsService } from 'src/app/service/alerts.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { environment } from 'src/environments/environment.prod';
 
@@ -20,14 +21,15 @@ export class UserEditComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private alerts: AlertsService
   ) { }
 
-  ngOnInit(){
+  ngOnInit() {
 
-    window.scroll(0,0)
+    window.scroll(0, 0)
 
-    if(environment.token == ''){
+    if (environment.token == '') {
       this.router.navigate(['/login'])
     }
 
@@ -35,25 +37,26 @@ export class UserEditComponent implements OnInit {
     this.findyByIdUser(this.idUser)
   }
 
-  confirmSenha(event: any){
+  confirmSenha(event: any) {
     this.confirmarSenha = event.target.value
   }
 
-  tipoUser(event:any){
+  tipoUser(event: any) {
     this.tipoUsuario = event.target.value
   }
 
-  atualizar(){
+  atualizar() {
     this.user.tipoUsuario = this.tipoUsuario
 
-    if(this.user.senha != this.confirmarSenha){
-      alert('Incorret passwords!')
+    if (this.user.senha != this.confirmarSenha) {
+      this.alerts.showAlertDanger('Incorret passwords!')
     }
-    else{
-      this.authService.cadastrar(this.user).subscribe((resp: User) =>{
+    else {
+      this.authService.cadastrar(this.user).subscribe((resp: User) => {
         this.user = resp
         this.router.navigate(['/inicio'])
-        alert('User was successfully updated, please login again')
+        this.alerts.showAlertSuccess('User was successfully updated, please login again')
+
         environment.token = ''
         environment.nome = ''
         environment.foto = ''
@@ -63,8 +66,8 @@ export class UserEditComponent implements OnInit {
     }
   }
 
-  findyByIdUser(id: number){
-    this.authService.getByIdUser(id).subscribe((resp: User) =>{
+  findyByIdUser(id: number) {
+    this.authService.getByIdUser(id).subscribe((resp: User) => {
       this.user = resp
     })
   }

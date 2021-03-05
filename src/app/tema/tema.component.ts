@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { Tema } from '../model/Tema';
+import { AlertsService } from '../service/alerts.service';
 import { TemaService } from '../service/tema.service';
 
 @Component({
@@ -16,17 +17,18 @@ export class TemaComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private temaService: TemaService //importar o TemaService
+    private temaService: TemaService, //importar o TemaService
+    private alerts: AlertsService
   ) { }
 
-  ngOnInit(){
+  ngOnInit() {
 
-    if(environment.token == ''){
+    if (environment.token == '') {
       this.router.navigate(['/login'])
     }
 
-    if(environment.tipoUsuario != 'adm'){
-      alert('You need to be an adm to access this route')
+    if (environment.tipoUsuario != 'adm') {
+      this.alerts.showAlertInfo('You must to be an adm to access this route')
       this.router.navigate(['/inicio'])
     }
 
@@ -35,16 +37,16 @@ export class TemaComponent implements OnInit {
   }
 
   //acessar o temaService, pegar o metodo getAllTema, transformar em json e retornar um array de temas
-  findAllTemas(){
-    this.temaService.getAllTema().subscribe((resp: Tema[])=>{
+  findAllTemas() {
+    this.temaService.getAllTema().subscribe((resp: Tema[]) => {
       this.listaTemas = resp//this.listaTemas recebe resp
     })
   }
 
-  cadastrar(){ //método chamado no html ao clicar no botão de cadastrar/post
-    this.temaService.postTema(this.tema).subscribe((resp: Tema)=>{
+  cadastrar() { //método chamado no html ao clicar no botão de cadastrar/post
+    this.temaService.postTema(this.tema).subscribe((resp: Tema) => {
       this.tema = resp
-      alert('Your theme was posted successfully!')
+      this.alerts.showAlertSuccess('Your theme was posted successfully!')
       this.findAllTemas()//chamar o findAllTema para cadastrar e listar novamente os temas, nao apenas um 
 
       //esse service de tema recebera o metodo postTema(desse tema) e sera convertido de json para typescript
@@ -53,5 +55,5 @@ export class TemaComponent implements OnInit {
       //ZERANDO O CAMPO DE TEMA PARA SER POSSÍVEL CADASTRAR OUTRO
       this.tema = new Tema()
     })
-  } 
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../model/User';
+import { AlertsService } from '../service/alerts.service';
 import { AuthService } from '../service/auth.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private authService: AuthService, //INJEÇÃO DE DEPENDENCIAS SEMPRE FICAM DENTRO DO CONSTRUTOR
-    private router: Router
+    private router: Router,
+    private alerts: AlertsService
   ) { }
 
   ngOnInit(){ //apagar o void
@@ -40,7 +42,7 @@ export class SignupComponent implements OnInit {
     this.user.tipoUsuario = this.tipoDeUser
 
     if(this.user.senha != this.confirmarSenha){
-      alert('As senhas estão incorretas!')
+      this.alerts.showAlertDanger('Incorrect user and/or password!')
     }else{
       this.authService.cadastrar(this.user).subscribe((resp: User) =>{ //TRANSFORMANDO UM OBJETO TS EM FORMATO JSON
        this.user = resp
@@ -49,7 +51,7 @@ export class SignupComponent implements OnInit {
         //PRIMEIRAMENTE, DEVO INJETAR UMA DEPENDENCIA NO CONSTRUCTOR CHAMADA ROUTER
         this.router.navigate(['/login'])
 
-        alert('Usuário cadastrado com sucesso!')
+        this.alerts.showAlertSuccess('User was successfully registered!')
        
     }
   }
