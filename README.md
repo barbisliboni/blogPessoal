@@ -14,7 +14,7 @@ Esse repositório se refere ao exercício do curso de Desenvolvedor FullStack Ja
 <hr>
 
 ##### Interessado? Acesse agora! 
-##### Link do projeto: 
+##### Link do projeto: https://blogpessoalliboni.herokuapp.com/
 
 
 
