@@ -1,6 +1,6 @@
 ## Bem vindo ao meu blog pessoal! 🦋
 
-Esse repositório se refere ao exercício do curso de Desenvolvedor FullStack Java Jr. da Generation Brasil!
+Esse repositório se refere ao exercício do curso de Desenvolvedor FullStack Java Jr. da Generation Brasil.
 
 ### É possível: 👨‍💻
 
